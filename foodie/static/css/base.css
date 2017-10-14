@@ -1,0 +1,52 @@
+.no-shadow {
+  text-shadow: none;
+}
+
+.scrollToTop, a.scrollToTop {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    text-align: center;
+    background: skyblue;
+    font-weight: bold;
+    font-size: 19px;
+    padding-top: 7px;
+    color: #FFFFFF;
+    text-decoration: none;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    display: none;
+    z-index: 1000;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+}
+
+.scrollToTop > .glyphicon {
+    padding-left: 1px;
+}
+
+.scrollToTop:hover {
+    background: rgb(143, 163, 188);
+    box-shadow: 0 0 5px rgba(143, 163, 188,0.7);
+}
+
+::selection {
+    background: skyblue;
+    color: white;
+}
+::-moz-selection {
+    background: skyblue;
+    color: white;
+ }
+
+.wrapper {
+    height: 100%;
+    min-height: 100%;
+}
+
+.test {
+    color: #c182ff;
+}
