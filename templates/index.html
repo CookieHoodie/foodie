@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Foodie</title>
+  <meta charset="UTF-8">
+</head>
+
+<style>
+
+h1{
+   font-size: 1000%;
+   text-align: center;
+   color:pink;
+   font-family: "Bauhaus 93";
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  margin: -20px -50px; 
+  position:relative;
+  top:50%; 
+  left:50%;
+  background-color: #309c9c;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+
+<style type="text/css">  
+a.nounderline:link  
+{  
+ text-decoration:none;  
+}  
+</style>
+
+<body background=http://sqwanjia.net/data/out/19/38811425-beautiful-scenery.jpg>
+<h1>Foodie</h1>
+<pre>
+   <a href="{% url 'account:login' %}" class="button nounderline">Login</a>
+
+
+
+
+<a href="{% url 'account:register' %}" class="button nounderline">Register</a>
+</pre>
+</body>
+
+</html>
+

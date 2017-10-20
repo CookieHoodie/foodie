@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form Using jQuery - Demo Preview</title>
+        <meta name="robots" content="noindex, nofollow">
+<!-- Include CSS File Here -->
+        <style>
+        /* Below line is used for online Google font */
+        @import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+        h2{
+          text-align: center;
+          font-size: 24px;
+        }
+        hr{
+          margin-bottom: 30px;
+        }
+        body{
+          background-color: #b22129;
+        }
+        div.container{
+          width: 960px;
+          height: 610px;
+          margin:50px auto;
+          font-family: 'Droid Serif', serif;
+          position:relative;
+        }
+        div.main{
+          width: 320px;
+          margin: 0 auto;
+          padding: 10px 55px 40px;
+          background-color: #d13434;
+          border: 15px solid white;
+          box-shadow: 0 0 10px;
+          border-radius: 2px;
+          font-size: 13px;
+        }
+        input[type=text],[type=password] {
+          width: 97.7%;
+          height: 34px;
+          padding-left: 5px;
+          margin-bottom: 20px;
+          margin-top: 8px;
+          box-shadow: 0 0 5px #ffffff;
+          border: 2px solid #ffffff;
+          color: #4f4f4f;
+          font-size: 16px;
+        }
+        label{
+          color: #000000;
+          font-size: 14px;
+          font-weight: bold;
+        }
+        #Rregister {
+          font-size: 20px;
+          margin-top: 15px;
+          background: linear-gradient(#5e5b5b 5%, #a39c9c 100%);
+          border: 1px solid #5e5b5b;
+          padding: 7px 35px;
+          color: white;
+          text-shadow: 0px 1px 0px #0a990d;
+          font-weight: bold;
+          border-radius: 2px;
+          cursor: pointer;
+          width: 100%;
+        }
+        #Rregister:hover{
+          background: linear-gradient(#0a990d 5%, #0bbc0f 100%);
+        }
+        #Cregister {
+          font-size: 20px;
+          margin-top: 15px;
+          background: linear-gradient(#5e5b5b 5%, #a39c9c 100%);
+          border: 1px solid #5e5b5b;
+          padding: 7px 35px;
+          color: white;
+          text-shadow: 0px 1px 0px #0a990d;
+          font-weight: bold;
+          border-radius: 2px;
+          cursor: pointer;
+          width: 100%;
+        }
+        #Cregister:hover{
+          background: linear-gradient(#0a990d 5%, #0bbc0f 100%);
+        }
+
+        /*tabs*/
+        /* Style the tab */
+        div.tab {
+          overflow: hidden;
+          border: 1px solid #ccc;
+          background-color: #f1f1f1;
+        }
+        /* Style the buttons inside the tab */
+        div.tab button {
+          background-color: inherit;
+          float: left;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 14px 16px;
+          transition: 0.3s;
+        }
+        /* Change background color of buttons on hover */
+        div.tab button:hover {
+          background-color: #ddd;
+        }
+        /* Create an active/current tablink class */
+        div.tab button.active {
+          background-color: #ccc;
+        }
+        /* Style the tab content */
+        .tabcontent {
+          display: none;
+          padding: 6px 12px;
+          border-top: none;
+        }
+        .tabcontent {
+          -webkit-animation: fadeEffect 1s;
+          animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+        @-webkit-keyframes fadeEffect {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
+        @keyframes fadeEffect {
+          from {opacity: 0;}
+          to {opacity: 1;}
+        }
+        </style>
+
+
+<!-- Include JS File Here -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript">
+          //scroll to top on load
+          window.onbeforeunload = function () {
+            window.scrollTo(0, 0);
+          }
+
+
+          $(document).ready(function() {
+          //customer
+          $("#Cregister").click(function() {
+            var name = $("#Cname").val();
+            var email = $("#Cemail").val();
+            var password = $("#Cpassword").val();
+            var cpassword = $("#Ccpassword").val();
+            var mnumber = $("#Cmnumber").val();
+            var dob =  $('#Cdob').val();
+            var gender = $('input[name="dgender"]:checked').val();
+
+            if (name == '' || email == '' || password == '' || cpassword == '' || dob == '' || mnumber == '' || gender == '') {
+              alert("Please fill all fields...!!!!!!");
+                event.preventDefault();
+            }
+            else if ((password.length) < 8) {
+              alert("Password should at least 8 character in length...!!!!!!");
+                event.preventDefault();
+            }
+            else if (!((password)===(cpassword))) {
+              alert("Your passwords don't match. Try again?");
+                event.preventDefault();
+            }
+            else if ((mnumber.length) != 8) {
+              alert("mobile number should be 8 character in length...!!!!!!");
+                event.preventDefault();
+            }
+            else if($("#radio_1").prop("checked", true)==false){
+              alert("Gender should not be empty");
+                event.preventDefault();
+            }
+            else {
+              $.post("intuitionRegister.php", {
+                name1: name,
+                email1: email,
+                password1: password,
+                nric1: nric,
+                onumber1: onumber,
+                mnumber1: mnumber,
+                dob1: dob,
+                gender1: gender
+              }, function(data) {
+                if (data == 'You have Successfully Registered.....') {
+                  $("form")[0].reset();
+                }
+                alert(data);
+              });
+            }
+          });
+
+
+            //restaurant
+            $("#Rregister").click(function() {
+              var name = $("#Rname").val();
+              var email = $("#Remail").val();
+              var password = $("#Rpassword").val();
+              var cpassword = $("#Rcpassword").val();
+              var nric = $("#Rnric").val();
+              var onumber = $("#Ronumber").val();
+              var mnumber = $("#Rmnumber").val();
+              var dob =  $('#Rdob').val();
+              var gender = $('input[name="dgender"]:checked').val();
+
+              if (name == '' || email == '' || password == '' || cpassword == '' || dob == '' || nric == '' || onumber == '' || mnumber == '' || gender == '') {
+                alert("Please fill all fields...!!!!!!");
+                  event.preventDefault();
+              }
+              else if ((password.length) < 8) {
+                alert("Password should at least 8 character in length...!!!!!!");
+                  event.preventDefault();
+              }
+              else if (!(password).match(cpassword)) {
+                alert("Your passwords don't match. Try again?");
+                  event.preventDefault();
+              }
+              else if ((nric.length) != 9) {
+                alert("NRIC should at least 8 character in length...!!!!!!");
+                  event.preventDefault();
+              }
+              else if ((onumber.length) != 8) {
+                alert("office number should be 8 character in length...!!!!!!");
+                  event.preventDefault();
+              }
+              else if ((mnumber.length) != 8) {
+                alert("mobile number should be 8 character in length...!!!!!!");
+                  event.preventDefault();
+              }
+              else if($("#radio_1").prop("checked", true)==false){
+                alert("Gender should not be empty");
+                  event.preventDefault();
+              }
+              else {
+                $.post("intuitionRegister.php", {
+                  name1: name,
+                  email1: email,
+                  password1: password,
+                  nric1: nric,
+                  onumber1: onumber,
+                  mnumber1: mnumber,
+                  dob1: dob,
+                  gender1: gender
+                }, function(data) {
+                  if (data == 'You have Successfully Registered.....') {
+                    $("form")[0].reset();
+                  }
+                  alert(data);
+                });
+              }
+            });
+
+            //open customer by default
+            document.getElementById("defaultOpen").click();
+          });
+
+          //switch tabs between customer and restaurant registration
+          function switchTab(evt, tabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+              tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+              tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+          }
+
+        </script>
+    </head>
+
+    <body background="http://eskipaper.com/images/food-wallpaper-11.jpg">
+
+        <div class="tab">
+          <button class="tablinks" onclick="switchTab(event, 'Customer')" id="defaultOpen">Customer</button>
+          <button class="tablinks" onclick="switchTab(event, 'Restaurant')">Restaurant</button>
+        </div>
+
+        <div class="container">
+          <h3 align="center" style="color: white">{{error_message}}</h3>
+          <div id="Customer" class="tabcontent">
+            <div class="main">
+              <form class="form" method="post" action="#">
+                  {% csrf_token %}
+                <h2>Customer Registration</h2>
+                <label>Name :</label>
+                <input type="text" name="dname" id="Cname">
+                <label>Email :</label>
+                <input type="text" name="demail" id="Cemail">
+                <label>Password :</label>
+                <input type="password" name="dpassword" id="Cpassword">
+                <label>Confirm Password :</label>
+                <input type="password" name="dcpassword" id="Ccpassword">
+                <label>Mobile Number :</label>
+                <input type="text" name="dmnumber" id="Cmnumber">
+                <label>Date Of Birth :</label><br />
+                <input type="date" name="ddob" id="Cpassword"><br /><br />
+                <label>Gender :</label><br>
+                <input type="radio" name="dgender" value="male" id="Cmgender"> Male
+                <input type="radio" name="dgender" value="female" id="Cfgender"> Female<br><br />
+                  <button type="submit" name="Cregister" value="Cregister" id="Cregister">Register</button>
+              </form>
+            </div>
+          </div>
+
+          <div id="Restaurant" class="tabcontent">
+            <div class="main">
+              <form class="form" method="post" action="#">
+                  {% csrf_token %}
+                <h2>Restaurant Registration</h2>
+                <label>Name :</label>
+                <input type="text" name="dname" id="Rname">
+                <label>Email :</label>
+                <input type="text" name="demail" id="Remail">
+                <label>Password :</label>
+                <input type="password" name="dpassword" id="Rpassword">
+                <label>Confirm Password :</label>
+                <input type="password" name="dcpassword" id="Rcpassword">
+                <label>NRIC/FIN :</label>
+                <input type="text" name="dnric" id="Rnric">
+                <label>Office Number :</label>
+                <input type="text" name="donumber" id="Ronumber">
+                <label>Mobile Number :</label>
+                <input type="text" name="dmnumber" id="Rmnumber">
+                <label>Date Of Birth :</label><br>
+                <input type="date" name="ddob" id="Cpassword"><br><br />
+                <label>Gender :</label><br>
+                <input type="radio" name="dgender" value="male" id="Rmgender"> Male
+                <input type="radio" name="dgender" value="female" id="Rfgender"> Female<br><br />
+                <button type="submit" id="Rregister" name="Rregister" value="Rregister">Register</button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+    </body>
+</html>
